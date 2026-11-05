@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hóa 12 – Chương 5: Pin điện và điện phân</title>
+<style>
+:root{--bg:#fff;--fg:#1f2937;--mut:#6b7280;--card:#f3f4f6;--ac:#0f766e;--ac2:#ccfbf1;--ok:#15803d;--bad:#b91c1c;--bd:#d1d5db;--warn:#fef3c7;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#111827;--fg:#e5e7eb;--mut:#9ca3af;--card:#1f2937;--ac:#2dd4bf;--ac2:#134e4a;--ok:#4ade80;--bad:#f87171;--bd:#374151;--warn:#422006}}
+:root[data-theme="dark"]{--bg:#111827;--fg:#e5e7eb;--mut:#9ca3af;--card:#1f2937;--ac:#2dd4bf;--ac2:#134e4a;--ok:#4ade80;--bad:#f87171;--bd:#374151;--warn:#422006}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:760px;margin:0 auto;padding:12px 16px 40px}
+.top{display:flex;justify-content:space-between;font-size:14px;color:var(--mut)}
+.pb{height:8px;background:var(--card);border-radius:4px;margin:6px 0 16px;overflow:hidden}
+#bar{height:100%;width:0;background:var(--ac);transition:width .4s}
+h2{margin:.2em 0 .5em;color:var(--ac);font-size:1.45em}h3{margin:1.2em 0 .3em}
+.box{background:var(--card);border-radius:10px;padding:12px 14px;margin:12px 0}
+.key{background:var(--ac2);border-left:5px solid var(--ac);border-radius:6px;padding:10px 14px;margin:12px 0}
+.tip{background:var(--warn);border-radius:8px;padding:10px 14px;margin:12px 0}
+table{border-collapse:collapse;width:100%;font-size:15px}th,td{border:1px solid var(--bd);padding:6px 8px;text-align:left}th{background:var(--card)}
+.sc{overflow-x:auto}
+.q{border:2px solid var(--bd);border-radius:10px;padding:12px;margin:16px 0}
+.q>p:first-child{margin:0 0 8px;font-weight:600}
+.q button,.nav button,select{font:inherit;color:var(--fg);background:var(--bg);border:1px solid var(--bd);border-radius:8px;padding:8px 12px;margin:4px 0;cursor:pointer}
+.q button{display:block;width:100%;text-align:left}
+.q button.ok{border-color:var(--ok);background:var(--ac2)}.q button.no{border-color:var(--bad);opacity:.6}
+.fb{margin:6px 0 0;font-size:15px}.fb.ok{color:var(--ok)}.fb.no{color:var(--bad)}
+.nav{display:flex;gap:10px;justify-content:space-between;align-items:center;margin-top:24px}
+.nav button{background:var(--ac);color:var(--bg);border-color:var(--ac);font-weight:600}
+.nav button:disabled{opacity:.35;cursor:not-allowed}.nav #pv{background:var(--bg);color:var(--fg);border-color:var(--bd)}
+#msg{font-size:14px;color:var(--mut);text-align:center;flex:1}
+.end{height:2px}
+svg text{fill:var(--fg);font:13px system-ui,sans-serif}
+.w{border:2px dashed var(--ac);border-radius:12px;padding:12px;margin:14px 0}
+.big{font-size:2.2em;text-align:center;margin:.2em}
+</style>
+</head>
+<body>
+<main>
+<div class="top"><span>Hóa học 12 · Kết nối tri thức</span><span id="st"></span></div>
+<div class="pb"><div id="bar"></div></div>
+
+<!-- 0 -->
+<section class="pg">
+<h2>Chương 5: Pin điện và điện phân</h2>
+<div class="box">🔋 Vì sao pin điều khiển tivi, acquy xe máy lại tạo ra điện? Vì sao nhẫn bạc, vòng mạ vàng lại được phủ một lớp kim loại sáng bóng? Cả hai đều là phản ứng oxi hóa – khử, chỉ khác <b>chiều biến đổi năng lượng</b>.</div>
+<div class="key"><b>Pin điện:</b> phản ứng hóa học → sinh ra dòng điện.<br><b>Điện phân:</b> dùng dòng điện → ép phản ứng hóa học xảy ra.</div>
+<h3>Sau bài học này em sẽ:</h3>
+<ul>
+<li>Nêu được thế điện cực chuẩn và dùng nó so sánh tính oxi hóa – khử của các cặp.</li>
+<li>Mô tả cấu tạo pin Galvani, viết phản ứng ở mỗi điện cực, tính sức điện động chuẩn của pin.</li>
+<li>Dự đoán chiều của phản ứng oxi hóa – khử dựa vào E°.</li>
+<li>Kể tên một số nguồn điện hóa học thông dụng (pin khô, acquy, pin lithium-ion) và biết cách bảo vệ môi trường.</li>
+<li>Nêu khái niệm điện phân; viết quá trình ở cathode, anode khi điện phân nóng chảy và dung dịch.</li>
+<li>Nêu ứng dụng của điện phân: điều chế kim loại, Cl₂, NaOH; tinh chế kim loại; mạ điện.</li>
+</ul>
+<h3>Ôn nhanh kiến thức cũ</h3>
+<div class="q" data-o="Nhường electron|Nhận electron|Nhường proton|Nhận proton" data-a="0" data-e="Chất khử nhường electron, số oxi hóa tăng (bị oxi hóa)."><p>Chất khử là chất…</p></div>
+<div class="q" data-o="Sự nhường electron|Sự nhận electron|Sự nhường proton|Sự giảm số oxi hóa" data-a="1" data-e="Quá trình khử là quá trình nhận electron, số oxi hóa giảm."><p>Quá trình khử (sự khử) là…</p></div>
+</section>
+
+<!-- 1 -->
+<section class="pg" hidden>
+<h2>1. Thế điện cực chuẩn</h2>
+<h3>Cặp oxi hóa – khử</h3>
+<p>Một kim loại và ion của nó tạo thành một <b>cặp oxi hóa – khử</b>, viết là <b>dạng oxi hóa / dạng khử</b>. Ví dụ: Zn²⁺/Zn, Cu²⁺/Cu, Ag⁺/Ag, 2H⁺/H₂.</p>
+<p>Mỗi cặp có xu hướng nhận electron khác nhau. Người ta đo xu hướng đó bằng <b>thế điện cực chuẩn E°</b> (đơn vị vôn, V).</p>
+<h3>Điện cực hydrogen chuẩn</h3>
+<p>Làm sao có “thước đo” chung? Các nhà khoa học chọn một điện cực làm mốc: <b>điện cực hydrogen chuẩn</b>, gồm thanh platinum nhúng trong dung dịch H⁺ 1 M, có khí H₂ áp suất 1 bar sục vào, ở 25 °C.</p>
+<div class="key">Quy ước: <b>E°(2H⁺/H₂) = 0,00 V</b>. Muốn biết E° của cặp Zn²⁺/Zn hay Cu²⁺/Cu, ghép điện cực đó (ion 1 M) với điện cực hydrogen chuẩn rồi đo hiệu điện thế.</div>
+<h3>Bảng thế điện cực chuẩn (làm tròn)</h3>
+<div class="sc"><table><tr><th>Cặp</th><th>Mg²⁺/Mg</th><th>Al³⁺/Al</th><th>Zn²⁺/Zn</th><th>Fe²⁺/Fe</th><th>2H⁺/H₂</th><th>Cu²⁺/Cu</th><th>Ag⁺/Ag</th></tr>
+<tr><th>E° (V)</th><td>−2,36</td><td>−1,68</td><td>−0,76</td><td>−0,44</td><td>0,00</td><td>+0,34</td><td>+0,80</td></tr></table></div>
+<div class="key"><b>Cách đọc bảng (rất quan trọng):</b><br>• E° <b>càng lớn</b> → <b>dạng oxi hóa càng mạnh</b> (ion càng dễ nhận electron), dạng khử (kim loại) càng yếu.<br>• E° <b>càng nhỏ</b> (càng âm) → <b>dạng khử càng mạnh</b> (kim loại càng dễ nhường electron).</div>
+<div class="tip">💡 Đi từ Mg đến Ag: tính khử của kim loại <b>giảm dần</b>, tính oxi hóa của ion kim loại <b>tăng dần</b>. Đây chính là dãy hoạt động hóa học em đã học, nay được “đo” bằng con số.</div>
+<div class="q" data-o="Zn|Fe|Cu|Ag" data-a="0" data-e="Zn có E° nhỏ nhất (−0,76 V) nên tính khử mạnh nhất." data-h="Kim loại có E° nhỏ nhất là chất khử mạnh nhất."><p>Trong các kim loại Zn, Fe, Cu, Ag, kim loại có tính khử mạnh nhất là:</p></div>
+<div class="q" data-o="Zn²⁺|Fe²⁺|Cu²⁺|Ag⁺" data-a="3" data-e="Ag⁺ có E° lớn nhất (+0,80 V) nên là ion oxi hóa mạnh nhất." data-h="Ion có E° lớn nhất là chất oxi hóa mạnh nhất."><p>Ion có tính oxi hóa mạnh nhất là:</p></div>
+</section>
+
+<!-- 2 -->
+<section class="pg" hidden>
+<h2>2. Pin Galvani (pin điện hóa)</h2>
+<h3>Cấu tạo pin Zn – Cu</h3>
+<ul>
+<li>Cốc 1: thanh Zn nhúng trong dung dịch ZnSO₄ 1 M.</li>
+<li>Cốc 2: thanh Cu nhúng trong dung dịch CuSO₄ 1 M.</li>
+<li>Hai thanh kim loại nối với nhau bằng <b>dây dẫn</b> (có vôn kế). Hai dung dịch nối bằng <b>cầu muối</b> (ống chứa KNO₃ hoặc KCl) để ion di chuyển, giữ cho dung dịch trung hòa về điện.</li>
+</ul>
+<h3>Pin hoạt động thế nào?</h3>
+<div class="sc"><table><tr><th></th><th>Anode (cực âm −)</th><th>Cathode (cực dương +)</th></tr>
+<tr><th>Là kim loại có</th><td>E° nhỏ hơn (Zn)</td><td>E° lớn hơn (Cu)</td></tr>
+<tr><th>Quá trình</th><td><b>Oxi hóa</b>: Zn → Zn²⁺ + 2e</td><td><b>Khử</b>: Cu²⁺ + 2e → Cu</td></tr>
+<tr><th>Hiện tượng</th><td>Thanh Zn mòn dần</td><td>Có Cu bám vào thanh Cu, màu xanh nhạt dần</td></tr></table></div>
+<p>Electron đi từ <b>anode → cathode</b> qua dây dẫn ngoài, tạo thành dòng điện. Phản ứng chung: <b>Zn + Cu²⁺ → Zn²⁺ + Cu</b>.</p>
+<div class="key"><b>Sức điện động chuẩn của pin:</b> E°<sub>pin</sub> = E°<sub>cathode</sub> − E°<sub>anode</sub><br>Pin Zn–Cu: E°<sub>pin</sub> = +0,34 − (−0,76) = <b>1,10 V</b><br>Kí hiệu pin: (−) Zn | Zn²⁺ ‖ Cu²⁺ | Cu (+)</div>
+<div class="tip">💡 Mẹo nhớ: <b>Cathode – Khử</b>, <b>Anode – Oxi hóa</b> (ca–khử, an–oxi). Trong pin, cathode là cực <b>dương</b>; E°<sub>pin</sub> luôn <b>dương</b>.</div>
+<div class="w"><b>🧪 Thử nghiệm:</b> chọn hai cặp bất kì để lắp pin.<br>
+<select id="sa"></select> và <select id="sb"></select> <label><input type="checkbox" id="sw" checked> Đóng mạch</label>
+<svg viewBox="0 0 360 190" width="100%" role="img" aria-label="Sơ đồ pin điện hóa">
+<g stroke="var(--fg)" fill="none" stroke-width="2"><path d="M30 80V160H140V80M220 80V160H330V80"/><path id="wire" d="M82 55V18H272V55"/><path d="M115 80V62H245V80" stroke="var(--mut)" stroke-dasharray="4"/></g>
+<rect x="76" y="55" width="12" height="90" fill="#9ca3af"/><rect x="266" y="55" width="12" height="90" fill="#b45309"/>
+<rect x="31" y="110" width="108" height="49" fill="#38bdf8" opacity=".25"/><rect x="221" y="110" width="108" height="49" fill="#38bdf8" opacity=".25"/>
+<g id="el" fill="#f59e0b"><circle r="5"><animateMotion dur="2.4s" repeatCount="indefinite"><mpath href="#wire"/></animateMotion></circle><circle r="5"><animateMotion dur="2.4s" begin="-.8s" repeatCount="indefinite"><mpath href="#wire"/></animateMotion></circle><circle r="5"><animateMotion dur="2.4s" begin="-1.6s" repeatCount="indefinite"><mpath href="#wire"/></animateMotion></circle></g>
+<text x="180" y="12" text-anchor="middle">e⁻ chạy theo dây →</text><text x="180" y="58" text-anchor="middle" font-size="11">cầu muối</text>
+<text x="85" y="180" text-anchor="middle" id="la"></text><text x="275" y="180" text-anchor="middle" id="lc"></text></svg>
+<div id="po" class="box"></div></div>
+<div class="q" data-o="0,42 V|1,56 V|0,46 V|−1,56 V" data-a="1" data-e="E° = 0,80 − (−0,76) = 1,56 V." data-h="E°pin = E°(cathode) − E°(anode). Cathode là Ag, anode là Zn."><p>Tính E°<sub>pin</sub> của pin Zn–Ag:</p></div>
+<div class="q" data-o="Từ Cu sang Zn|Từ Zn sang Cu|Từ dung dịch sang thanh kim loại|Không có electron chạy" data-a="1" data-e="Electron đi từ anode (Zn) sang cathode (Cu) qua dây dẫn."><p>Trong pin Zn–Cu, electron chạy trong dây dẫn:</p></div>
+</section>
+
+<!-- 3 -->
+<section class="pg" hidden>
+<h2>3. Dự đoán chiều của phản ứng oxi hóa – khử</h2>
+<div class="key"><b>Quy tắc α:</b> chất <b>oxi hóa mạnh hơn</b> + chất <b>khử mạnh hơn</b> → chất oxi hóa yếu hơn + chất khử yếu hơn.<br>Hay: phản ứng xảy ra khi <b>E°(dạng oxi hóa tham gia) − E°(dạng khử tham gia) &gt; 0</b>.</div>
+<h3>Ba bước làm bài</h3>
+<ol><li>Viết hai cặp oxi hóa – khử và tra E°.</li><li>Xác định chất oxi hóa (ion) và chất khử (kim loại) đang tham gia.</li><li>Lấy E° của ion trừ E° của kim loại. Kết quả &gt; 0 thì phản ứng <b>xảy ra</b>.</li></ol>
+<h3>Ví dụ</h3>
+<div class="box"><b>Cu + 2Ag⁺ → ?</b> E°(Ag⁺/Ag) = 0,80 &gt; E°(Cu²⁺/Cu) = 0,34 → <b>xảy ra</b>: Cu + 2Ag⁺ → Cu²⁺ + 2Ag. Hiện tượng: Ag bám vào Cu, dung dịch chuyển xanh.<br><br><b>Fe + Zn²⁺ → ?</b> E°(Zn²⁺/Zn) = −0,76 &lt; E°(Fe²⁺/Fe) = −0,44 → <b>không xảy ra</b>.</div>
+<div class="tip">💡 Kim loại đứng <b>trước</b> (E° nhỏ hơn) đẩy được ion kim loại đứng <b>sau</b> (E° lớn hơn) ra khỏi dung dịch muối. Khi có nhiều ion, ion có E° <b>lớn hơn</b> bị khử <b>trước</b>.</div>
+<div class="q" data-o="Cu + ZnSO₄|Zn + CuSO₄|Ag + CuSO₄|Cu + MgSO₄" data-a="1" data-e="Chỉ Zn (E° −0,76) khử được Cu²⁺ (E° +0,34): 0,34 − (−0,76) = 1,10 &gt; 0." data-h="Kim loại phải có E° nhỏ hơn kim loại trong muối."><p>Phản ứng nào xảy ra?</p></div>
+<div class="q" data-o="Zn²⁺|Cu²⁺|Cả hai cùng lúc|Không ion nào" data-a="1" data-e="Cu²⁺ có E° lớn hơn Zn²⁺ nên là chất oxi hóa mạnh hơn, bị Fe khử trước." data-h="Ion có E° lớn hơn bị khử trước."><p>Cho bột Fe vào dung dịch chứa Zn²⁺ và Cu²⁺. Ion bị Fe khử là:</p></div>
+</section>
+
+<!-- 4 -->
+<section class="pg" hidden>
+<h2>4. Một số nguồn điện hóa học</h2>
+<p>Nguồn điện hóa học (pin, acquy) là thiết bị biến <b>hóa năng thành điện năng</b> nhờ phản ứng oxi hóa – khử tự xảy ra.</p>
+<div class="sc"><table><tr><th>Loại</th><th>Cấu tạo chính</th><th>Đặc điểm</th></tr>
+<tr><td><b>Pin khô</b> (Zn–C, kiềm)</td><td>Vỏ Zn (anode), thanh than chì (cathode), chất điện li dạng hồ có MnO₂</td><td>Khoảng 1,5 V; dùng một lần rồi bỏ; dùng cho remote, đồng hồ</td></tr>
+<tr><td><b>Acquy chì</b></td><td>Pb (anode), PbO₂ (cathode), dung dịch H₂SO₄ loãng</td><td>Mỗi ngăn khoảng 2 V; acquy xe 12 V gồm 6 ngăn; <b>nạp lại được</b></td></tr>
+<tr><td><b>Pin lithium-ion</b></td><td>Ion Li⁺ di chuyển giữa hai điện cực khi sạc và xả</td><td>Nhẹ, năng lượng lớn, sạc nhiều lần; dùng trong điện thoại, xe điện</td></tr></table></div>
+<div class="box">Acquy chì khi cung cấp điện: Pb + PbO₂ + 2H₂SO₄ → 2PbSO₄ + 2H₂O. Khi nạp điện, phản ứng xảy ra theo chiều ngược lại.</div>
+<div class="tip">♻️ Pin và acquy cũ chứa kim loại nặng (Pb, Cd, Hg) và axit, gây ô nhiễm đất, nước. Hãy bỏ vào thùng thu gom pin cũ, <b>không vứt bừa bãi</b>.</div>
+<div class="q" data-o="Có thể nạp điện lại nhiều lần|Không có phản ứng hóa học|Không có cực âm|Dùng khí hydrogen" data-a="0" data-e="Acquy chì và pin Li-ion là nguồn điện nạp lại được; pin khô thông thường dùng một lần." data-h="Nghĩ đến việc sạc xe máy."><p>Điểm khác nhau của acquy so với pin khô thông thường là:</p></div>
+<div class="q" data-o="3|4|6|12" data-a="2" data-e="12 V : 2 V = 6 ngăn." data-h="Chia 12 V cho điện áp mỗi ngăn."><p>Mỗi ngăn acquy chì khoảng 2 V. Acquy 12 V có bao nhiêu ngăn?</p></div>
+</section>
+
+<!-- 5 -->
+<section class="pg" hidden>
+<h2>5. Điện phân – khái niệm và điện phân nóng chảy</h2>
+<div class="key"><b>Điện phân</b> là quá trình oxi hóa – khử xảy ra trên bề mặt điện cực khi cho <b>dòng điện một chiều</b> đi qua chất điện li nóng chảy hoặc dung dịch chất điện li.</div>
+<ul><li><b>Cathode</b> nối với cực <b>âm</b> của nguồn: cation (+) chạy về đây và bị <b>khử</b>.</li><li><b>Anode</b> nối với cực <b>dương</b> của nguồn: anion (−) chạy về đây và bị <b>oxi hóa</b>.</li></ul>
+<div class="tip">💡 Dù trong pin hay điện phân, luôn nhớ: <b>cathode – khử; anode – oxi hóa</b>. Chỉ có dấu của điện cực là khác.</div>
+<h3>So sánh pin điện và điện phân</h3>
+<div class="sc"><table><tr><th></th><th>Pin điện</th><th>Điện phân</th></tr>
+<tr><th>Năng lượng</th><td>Hóa năng → điện năng</td><td>Điện năng → hóa năng</td></tr>
+<tr><th>Phản ứng</th><td>Tự xảy ra</td><td>Bị ép xảy ra nhờ nguồn điện</td></tr>
+<tr><th>Cathode (khử)</th><td>Cực dương (+)</td><td>Cực âm (−)</td></tr>
+<tr><th>Anode (oxi hóa)</th><td>Cực âm (−)</td><td>Cực dương (+)</td></tr></table></div>
+<h3>Điện phân NaCl nóng chảy</h3>
+<div class="box">Chỉ có Na⁺ và Cl⁻ (không có nước).<br>Cathode (−): Na⁺ + e → Na<br>Anode (+): 2Cl⁻ → Cl₂ + 2e<br><b>Phương trình: 2NaCl → 2Na + Cl₂</b> (điện phân nóng chảy)</div>
+<div class="q" data-o="Sự khử|Sự oxi hóa|Sự trung hòa|Sự hòa tan" data-a="1" data-e="Anode là nơi anion nhường electron, tức là bị oxi hóa." data-h="Ca–khử, An–oxi."><p>Trong điện phân, ở anode xảy ra:</p></div>
+<div class="q" data-o="Cl₂|Na|H₂|O₂" data-a="1" data-e="Cathode: Na⁺ + e → Na. Cl₂ thoát ra ở anode." data-h="Cation Na⁺ về cathode và bị khử."><p>Điện phân NaCl nóng chảy, chất thu được ở cathode là:</p></div>
+</section>
+
+<!-- 6 -->
+<section class="pg" hidden>
+<h2>6. Điện phân dung dịch</h2>
+<p>Trong dung dịch còn có <b>nước</b>, nên nước cũng có thể bị điện phân. Em cần nhớ hai quy tắc:</p>
+<div class="key"><b>Ở cathode (khử):</b> ion có E° <b>lớn hơn</b> bị khử trước.<br>• Cu²⁺, Ag⁺… (E° lớn hơn nước): bị khử thành kim loại.<br>• Na⁺, K⁺, Ca²⁺, Mg²⁺, Al³⁺… (E° rất âm): <b>không bị khử</b>, thay vào đó nước bị khử: 2H₂O + 2e → H₂ + 2OH⁻<br><br><b>Ở anode (oxi hóa):</b><br>• Cl⁻, Br⁻, I⁻: bị oxi hóa (Cl⁻ → Cl₂).<br>• SO₄²⁻, NO₃⁻…: <b>không bị oxi hóa</b>, thay vào đó nước bị oxi hóa: 2H₂O → O₂ + 4H⁺ + 4e</div>
+<div class="w"><b>🧪 Thử nghiệm:</b> chọn chất điện phân <select id="ed"></select><div id="eo" class="sc"></div></div>
+<div class="tip">💡 Điện phân NaCl có màng ngăn tạo ra NaOH, H₂, Cl₂ – đây là cơ sở của <b>công nghiệp clo – kiềm</b>. Màng ngăn không cho Cl₂ phản ứng với NaOH.</div>
+<div class="q" data-o="Na|H₂|O₂|Cl₂" data-a="1" data-e="Na⁺ không bị khử trong dung dịch nên H₂O bị khử tạo H₂ ở cathode." data-h="Na⁺ có E° rất âm."><p>Điện phân dung dịch Na₂SO₄, khí thoát ra ở cathode là:</p></div>
+<div class="q" data-o="Tăng|Giảm|Không đổi|Không xác định được" data-a="1" data-e="Anode: 2H₂O → O₂ + 4H⁺ + 4e, sinh ra H₂SO₄ nên pH giảm." data-h="Xem phương trình chung của CuSO₄ ở phần thử nghiệm."><p>Điện phân dung dịch CuSO₄ (điện cực trơ), pH của dung dịch trong quá trình điện phân:</p></div>
+</section>
+
+<!-- 7 -->
+<section class="pg" hidden>
+<h2>7. Ứng dụng của điện phân</h2>
+<h3>a) Điều chế kim loại</h3>
+<p>Kim loại hoạt động mạnh (Na, K, Mg, Al…) được điều chế bằng điện phân <b>nóng chảy</b>. Ví dụ nhôm: điện phân Al₂O₃ nóng chảy, thêm <b>criolit</b> (Na₃AlF₆) để hạ nhiệt độ nóng chảy và tiết kiệm năng lượng.<br><b>2Al₂O₃ → 4Al + 3O₂</b></p>
+<div class="tip">Không điện phân dung dịch AlCl₃ được vì nước bị khử thay cho Al³⁺ (chỉ ra H₂, không ra Al).</div>
+<h3>b) Điều chế Cl₂, NaOH, H₂</h3>
+<p>Điện phân dung dịch NaCl có màng ngăn: <b>2NaCl + 2H₂O → 2NaOH + H₂ + Cl₂</b>.</p>
+<h3>c) Tinh chế kim loại (ví dụ đồng)</h3>
+<p>Anode là đồng thô, cathode là đồng tinh khiết, dung dịch CuSO₄. Cu ở anode tan ra thành Cu²⁺, Cu²⁺ bị khử và bám vào cathode. Đồng thu được có độ tinh khiết rất cao (dùng làm dây điện).</p>
+<h3>d) Mạ điện</h3>
+<p>Vật cần mạ là <b>cathode</b>; anode là kim loại dùng để mạ (Ni, Ag, Au, Cr…); dung dịch chứa muối của kim loại mạ. Kim loại mạ bám thành lớp mỏng, đẹp, chống gỉ.</p>
+<div class="q" data-o="Anode|Cathode|Cầu muối|Dung dịch" data-a="1" data-e="Ion kim loại mạ bị khử và bám lên cathode, nên vật cần mạ nối với cực âm (cathode)." data-h="Kim loại bám vào nơi xảy ra sự khử."><p>Khi mạ điện, vật cần mạ được đặt ở:</p></div>
+<div class="q" data-o="Al³⁺ không tan trong nước|Nước bị khử thay cho Al³⁺ ở cathode|Al₂O₃ rất dẻo|Cl⁻ không bị oxi hóa" data-a="1" data-e="Al³⁺ có E° rất âm nên không bị khử trong dung dịch; chỉ có H₂ thoát ra." data-h="Nhớ quy tắc ion Al³⁺, Na⁺, Mg²⁺ ở cathode."><p>Vì sao không điều chế Al bằng cách điện phân dung dịch AlCl₃?</p></div>
+</section>
+
+<!-- 8 -->
+<section class="pg" hidden>
+<h2>8. Tổng kết và luyện tập</h2>
+<div class="box"><b>Ghi nhớ nhanh</b><br>• E° lớn → dạng oxi hóa mạnh; E° nhỏ → dạng khử mạnh.<br>• Pin: anode (−) oxi hóa, cathode (+) khử; E°pin = E°cathode − E°anode.<br>• Phản ứng xảy ra khi E°(ion) − E°(kim loại) &gt; 0.<br>• Điện phân: cathode (−) khử, anode (+) oxi hóa.<br>• Dung dịch: ion kim loại mạnh không bị khử → H₂O bị khử; SO₄²⁻, NO₃⁻ không bị oxi hóa → H₂O bị oxi hóa.</div>
+<div class="q" data-o="1,56 V|2,36 V|3,16 V|1,68 V" data-a="2" data-e="E° = 0,80 − (−2,36) = 3,16 V." data-h="Cathode là Ag (0,80), anode là Mg (−2,36)."><p>Tính E°<sub>pin</sub> của pin Mg–Ag:</p></div>
+<div class="q" data-o="H₂|Cl₂|O₂|NaOH" data-a="1" data-e="Anode: 2Cl⁻ → Cl₂ + 2e." data-h="Cl⁻ bị oxi hóa trước H₂O."><p>Điện phân dung dịch NaCl có màng ngăn, chất thu được ở anode là:</p></div>
+<div class="q" data-o="Không có hiện tượng|Có Ag bám vào Cu, dung dịch chuyển xanh|Cu tan, dung dịch mất màu|Có khí thoát ra" data-a="1" data-e="Cu + 2Ag⁺ → Cu²⁺ + 2Ag." data-h="E°(Ag⁺/Ag) lớn hơn E°(Cu²⁺/Cu)."><p>Cho dây Cu vào dung dịch AgNO₃, hiện tượng quan sát được:</p></div>
+<div class="q" data-o="Anode|Cathode|Cầu muối|Dây dẫn" data-a="1" data-e="Trong pin, cathode là cực dương (+), nơi xảy ra sự khử." data-h="Cực dương là nơi nhận electron."><p>Trong pin điện hóa, cực dương (+) là:</p></div>
+<div id="res" class="box" hidden><div class="big">🎉</div><p style="text-align:center"><b>Hoàn thành bài học!</b><br>Số câu đúng ngay lần đầu: <b id="sc"></b></p></div>
+</section>
+
+<div class="nav"><button id="pv">← Quay lại</button><span id="msg"></span><button id="nx">Tiếp tục →</button></div>
+</main>
+<script>
+const P=[...document.querySelectorAll('.pg')],bar=document.getElementById('bar'),nx=document.getElementById('nx'),pv=document.getElementById('pv'),msg=document.getElementById('msg');
+let cur=0,first=0,tot=0,sent=false;const seen=P.map(()=>false);
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){seen[+e.target.dataset.i]=true;upd()}}));
+P.forEach((p,i)=>{const s=document.createElement('div');s.className='end';s.dataset.i=i;p.appendChild(s);io.observe(s)});
+document.querySelectorAll('.q').forEach(q=>{tot++;q.dataset.s='0';let tried=0;const f=document.createElement('p');f.className='fb';
+q.dataset.o.split('|').forEach((t,k)=>{const b=document.createElement('button');b.textContent=t;
+b.onclick=()=>{if(q.dataset.s==='1')return;
+if(k==q.dataset.a){q.dataset.s='1';b.classList.add('ok');if(!tried)first++;f.className='fb ok';f.innerHTML='✅ Đúng rồi! '+q.dataset.e}
+else{tried++;b.classList.add('no');b.disabled=true;f.className='fb no';f.innerHTML='❌ Chưa đúng, thử lại nhé. 💡 '+(q.dataset.h||'Đọc lại phần lí thuyết phía trên.')}
+upd()};q.appendChild(b)});q.appendChild(f)});
+const ok=i=>seen[i]&&![...P[i].querySelectorAll('.q')].some(q=>q.dataset.s!=='1');
+function upd(){const last=cur==P.length-1,d=P.filter((_,i)=>ok(i)).length;
+bar.style.width=100*d/P.length+'%';document.getElementById('st').textContent='Bước '+(cur+1)+'/'+P.length;
+nx.disabled=!ok(cur)||last;nx.hidden=last;pv.disabled=cur==0;
+msg.textContent=ok(cur)?'':(!seen[cur]?'Cuộn xuống cuối trang để đọc hết nội dung':'Trả lời đúng các câu hỏi để tiếp tục');
+if(last&&ok(cur))finish()}
+function show(n){cur=n;P.forEach((p,i)=>p.hidden=i!=cur);window.scrollTo(0,0);upd()}
+nx.onclick=()=>show(cur+1);pv.onclick=()=>show(cur-1);
+function finish(){document.getElementById('res').hidden=false;document.getElementById('sc').textContent=first+'/'+tot;
+if(sent)return;sent=true;try{let w=window,a=null,v=0;for(let i=0;w&&i<8&&!a;i++){if(w.API_1484_11){a=w.API_1484_11;v=2}else if(w.API){a=w.API;v=1}w=w.parent===w?null:w.parent}
+if(!a)return;const pc=Math.round(100*first/tot);
+if(v==2){a.Initialize('');a.SetValue('cmi.score.scaled',pc/100);a.SetValue('cmi.completion_status','completed');a.Commit('')}
+else{a.LMSInitialize('');a.LMSSetValue('cmi.core.score.raw',pc);a.LMSSetValue('cmi.core.lesson_status','completed');a.LMSCommit('')}}catch(e){}}
+/* Pin Galvani */
+const C=[['Mg',-2.36,2],['Al',-1.68,3],['Zn',-0.76,2],['Fe',-0.44,2],['Cu',0.34,2],['Ag',0.80,1]];
+const ion=(m,n)=>m+['','⁺','²⁺','³⁺'][n],fv=v=>String(v).replace('.',','),gc=(a,b)=>b?gc(b,a%b):a,sa=document.getElementById('sa'),sb=document.getElementById('sb');
+C.forEach((c,i)=>{sa.add(new Option(ion(c[0],c[2])+'/'+c[0],i));sb.add(new Option(ion(c[0],c[2])+'/'+c[0],i))});sa.value=2;sb.value=4;
+function pin(){const i=+sa.value,j=+sb.value,o=document.getElementById('po');
+if(i==j){o.textContent='Hãy chọn hai cặp khác nhau để lắp pin.';return}
+const[a,b]=C[i][1]<C[j][1]?[C[i],C[j]]:[C[j],C[i]],L=a[2]*b[2]/gc(a[2],b[2]),x=L/a[2],y=L/b[2],c=k=>k>1?k:'';
+o.innerHTML=`<b>Cực âm (anode):</b> ${a[0]} → ${ion(a[0],a[2])} + ${a[2]}e (oxi hóa)<br><b>Cực dương (cathode):</b> ${ion(b[0],b[2])} + ${b[2]}e → ${b[0]} (khử)<br><b>Phản ứng chung:</b> ${c(x)}${a[0]} + ${c(y)}${ion(b[0],b[2])} → ${c(x)}${ion(a[0],a[2])} + ${c(y)}${b[0]}<br><b>E°<sub>pin</sub></b> = ${fv(b[1])} − (${fv(a[1])}) = <b>${fv((b[1]-a[1]).toFixed(2))} V</b>`;
+document.getElementById('la').textContent='Anode (−): '+a[0];document.getElementById('lc').textContent='Cathode (+): '+b[0]}
+sa.onchange=sb.onchange=pin;pin();
+document.getElementById('sw').onchange=e=>document.getElementById('el').style.display=e.target.checked?'':'none';
+/* Điện phân dung dịch */
+const D=[['NaCl nóng chảy','Na⁺, Cl⁻','Na⁺ + e → Na','2Cl⁻ → Cl₂ + 2e','2NaCl → 2Na + Cl₂','Không có nước nên chỉ có hai ion này tham gia.'],
+['Dung dịch CuCl₂','Cu²⁺, Cl⁻, H₂O','Cu²⁺ + 2e → Cu','2Cl⁻ → Cl₂ + 2e','CuCl₂ → Cu + Cl₂','Cu²⁺ có E° lớn hơn nước nên bị khử trước; Cl⁻ bị oxi hóa trước H₂O.'],
+['Dung dịch CuSO₄','Cu²⁺, SO₄²⁻, H₂O','Cu²⁺ + 2e → Cu','2H₂O → O₂ + 4H⁺ + 4e','2CuSO₄ + 2H₂O → 2Cu + O₂ + 2H₂SO₄','SO₄²⁻ không bị oxi hóa nên H₂O bị oxi hóa ở anode; tạo H₂SO₄ nên pH giảm.'],
+['Dung dịch NaCl (có màng ngăn)','Na⁺, Cl⁻, H₂O','2H₂O + 2e → H₂ + 2OH⁻','2Cl⁻ → Cl₂ + 2e','2NaCl + 2H₂O → 2NaOH + H₂ + Cl₂','Na⁺ không bị khử nên H₂O bị khử (ra H₂ và OH⁻); Cl⁻ bị oxi hóa.'],
+['Dung dịch Na₂SO₄','Na⁺, SO₄²⁻, H₂O','2H₂O + 2e → H₂ + 2OH⁻ (×2)','2H₂O → O₂ + 4H⁺ + 4e','2H₂O → 2H₂ + O₂','Cả Na⁺ và SO₄²⁻ đều không bị điện phân, thực chất là điện phân nước.'],
+['Dung dịch AgNO₃','Ag⁺, NO₃⁻, H₂O','Ag⁺ + e → Ag (×4)','2H₂O → O₂ + 4H⁺ + 4e','4AgNO₃ + 2H₂O → 4Ag + O₂ + 4HNO₃','Ag⁺ bị khử; NO₃⁻ không bị oxi hóa nên H₂O bị oxi hóa ở anode.']];
+const ed=document.getElementById('ed');D.forEach((d,i)=>ed.add(new Option(d[0],i)));
+ed.onchange=()=>{const d=D[ed.value];document.getElementById('eo').innerHTML=`<table><tr><th>Các ion/phân tử có mặt</th><td>${d[1]}</td></tr><tr><th>Cathode (−), sự khử</th><td>${d[2]}</td></tr><tr><th>Anode (+), sự oxi hóa</th><td>${d[3]}</td></tr><tr><th>Phương trình chung</th><td><b>${d[4]}</b></td></tr><tr><th>Vì sao?</th><td>${d[5]}</td></tr></table>`};ed.onchange();
+show(0);
+</script>
+</body>
+</html>
